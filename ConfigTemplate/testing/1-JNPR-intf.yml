@@ -1,0 +1,25 @@
+---
+
+interfaces:
+  - name: xe-0/1/0
+    description: "Link to new Router"
+    tagged: true
+    vlans:
+      - vlanid: 10
+        description: "GI VLAN"
+        ipaddr: 10.10.1.1
+        netmask: 30
+
+      - vlanid: 20
+        description: "IUPS VLAN"
+        ipaddr: 10.10.2.1
+        netmask: 30
+  
+  - name: xe-0/0/0
+    description: "testing"
+    tagged: false
+    vlans:
+      - vlanid: 0
+        description: "testing"
+        ipaddr: 172.16.1.2
+

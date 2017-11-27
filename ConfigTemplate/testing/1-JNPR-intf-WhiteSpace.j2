@@ -1,0 +1,23 @@
+{# In Juniper Templates we need to add the {%- to the indented blocks#}
+
+interfaces {
+{% for intf in interfaces %}
+    {{intf.name}} {
+        {%- if intf.description is defined %} 
+        description "{{intf.description}}"
+        {% endif %}
+        {% if intf.tagged is defined %}
+        flexible-vlan-tagging;
+        encapsulation flexible-ethernet-services;
+        {% endif %}
+        {% for vlan in intf.vlans %}
+        unit {{vlan.vlanid}} {
+            {% if vlan.description is defined %} 
+            description "{{vlan.description}}";
+            {% endif %}
+            vlan-id {{vlan.vlanid}};
+        }
+{% endfor %}
+    }    
+{% endfor %}
+}

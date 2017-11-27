@@ -1,0 +1,24 @@
+interfaces {
+{% for intf in interfaces %}
+    {{intf.name}} {
+        {% if intf.description is defined %}
+        description "{{intf.description}}"; 
+        {% endif %}
+        {% if intf.tagged == true %}
+        flexible-vlan-tagging;
+        encapsulation flexible-ethernet-services;
+        {% endif %}
+        {% for vlan in intf.vlans %}
+        unit {{vlan.vlanid}} {
+            {% if vlan.description is defined %}
+            description "{{vlan.description}}";
+            {% endif %}
+            vlan-id {{vlan.vlanid}};
+            family inet {
+                address {{vlan.ipaddr}}/{{vlan.netmask|default ('30')}}
+            }
+        }
+        {% endfor %}
+    }    
+{% endfor %}
+}

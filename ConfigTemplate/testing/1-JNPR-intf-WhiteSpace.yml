@@ -1,0 +1,15 @@
+---
+
+interfaces:
+  - name: xe-0/1/0
+    description: "Link to new Router"
+    tagged: true
+    vlans:
+      - vlanid: 10
+      - vlanid: 20
+  - name: xe-0/0/0
+    description: "New Router"
+    vlans:
+      - vlanid: 30
+      - vlanid: 40
+
